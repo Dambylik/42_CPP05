@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:07:01 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/07 17:08:07 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:21:06 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ class Bureaucrat {
 		int                     isGradeOutOfRange( int i );
 
 		std::string const &     getName() const;
-		int const &    getGrade() const;
+		int const &             getGrade() const;
 
     protected:
 
     private:
 
         std::string const       _name;
-        int            _grade;
+        int                     _grade;
 };
 
 std::ostream & operator<<( std::ostream & lhs, Bureaucrat const & rhs );

@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:07:01 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/07 16:08:45 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:23:29 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ class Bureaucrat {
 		void                    decrementGrade();
 		int                     isGradeOutOfRange( int i );
 
-		std::string const &     getName() const;
-		unsigned int const &    getGrade() const;
+		std::string const &     getName()   const;
+		unsigned int const &    getGrade()  const;
 
     protected:
 

@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:09:45 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/07 17:08:36 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:27:25 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int Bureaucrat::isGradeOutOfRange( int grade ) {
 
 void Bureaucrat::signForm( Form & form ) {
     
-    try {
+    try {      
         form.beSigned(*this);
         std::cout << this->_name << " signed " << form.getName() << std::endl;
     }
