@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:07:01 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 14:15:11 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:01:29 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ class Bureaucrat {
 
         void                    incrementGrade();
 		void                    decrementGrade();
-		bool                    GradeOutOfRange( int grade );
         void                    signForm( Form & form );
 
 		std::string const &     getName() const;
