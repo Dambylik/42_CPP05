@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Exceptions.hpp                                     :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 15:29:32 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 16:11:59 by okapshai         ###   ########.fr       */
+/*   Created: 2025/02/10 17:23:02 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/10 18:26:07 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include <exception>
-#include <iostream>
+#include "AForm.hpp"
+#include <fstream>
 
-class GradeTooHighException : public std::exception {
+class ShrubberyCreationForm : public AForm {
     
-    public:
-        
-        virtual const char* what() const throw() {
-        return "Exception caught: Grade is too high!\n";
-    }
+    public :
+        ShrubberyCreationForm( std::string const & target );
+        ShrubberyCreationForm( const ShrubberyCreationForm & src );
+        ~ShrubberyCreationForm();
+
+        ShrubberyCreationForm & operator=( const ShrubberyCreationForm & other );
+        void action() const;
 };
 
-class GradeTooLowException : public std::exception {
-    
-    public:
-    
-        virtual const char* what() const throw() {
-        return "Exception caught: Grade is too low!\n";
-    }
-};

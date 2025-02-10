@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Exceptions.hpp                                     :+:      :+:    :+:   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 15:29:32 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 16:11:59 by okapshai         ###   ########.fr       */
+/*   Created: 2025/02/10 17:35:42 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/10 18:24:31 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include <exception>
+#include "RobotomyRequestForm.hpp"
 #include <iostream>
+#include <cstdlib>
 
-class GradeTooHighException : public std::exception {
-    
-    public:
-        
-        virtual const char* what() const throw() {
-        return "Exception caught: Grade is too high!\n";
-    }
-};
-
-class GradeTooLowException : public std::exception {
-    
-    public:
-    
-        virtual const char* what() const throw() {
-        return "Exception caught: Grade is too low!\n";
-    }
-};
+void RobotomyRequestForm::action() const {
+    std::cout << "* drilling noises *" << std::endl;
+    if (rand() % 2)
+        std::cout << getTarget() << " has been robotomized successfully!" << std::endl;
+    else
+        std::cout << getTarget() << "'s robotomy failed!" << std::endl;
+}

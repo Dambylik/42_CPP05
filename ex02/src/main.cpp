@@ -6,50 +6,37 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:10:08 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 16:28:13 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:38:58 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main() {
-    
-    std::cout << "------------------" << std::endl;
-    
     try {
-        Bureaucrat b1("Donald", 500);
-    }
-    catch ( const std::exception & e ) {
-        std::cerr << e.what() << std::endl;
-    }
-    
-    std::cout << "------------------" << std::endl;
-    
-    try {
-        Bureaucrat b2("Emmanuel", -42);
-    }
-    catch ( const std::exception & e ) {
-        std::cerr << e.what() << std::endl;
-    }
-    
-    std::cout << "------------------" << std::endl;
+        Bureaucrat boss("Alice", 1);
+        Bureaucrat intern("Bob", 140);
 
-    try {
-        Bureaucrat b3("Olaf", 2);
-        std::cout << b3 << std::endl;
-        
-        b3.incrementGrade();
-        std::cout << b3 << std::endl;
-       
-        b3.decrementGrade();
-         std::cout << b3 << std::endl;
-    }
-    catch ( const std::exception & e ) {
+        ShrubberyCreationForm shrub("home");
+        RobotomyRequestForm robo("Bender");
+        PresidentialPardonForm pardon("Marvin");
+
+        intern.signForm(shrub);
+        boss.executeForm(shrub);
+
+        boss.signForm(robo);
+        boss.executeForm(robo);
+
+        boss.signForm(pardon);
+        boss.executeForm(pardon);
+    } 
+    
+    catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
-   
-    std::cout << "------------------" << std::endl;
-
-    return 0;
 }
 

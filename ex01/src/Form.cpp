@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:00:07 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 14:46:23 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:49:21 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Bureaucrat.hpp"
 
 Form::Form( std::string const & name, int gradeToSign, int gradeToExecute ) 
-    : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
+    : _name(name), _isSigned(false), _signGrade(gradeToSign), _executeGrade(gradeToExecute) {
     
     std::cout << GREEN << "Form string-int constructor called" << RESET << std::endl;
     
@@ -27,7 +27,7 @@ Form::Form( std::string const & name, int gradeToSign, int gradeToExecute )
 }
 
 Form::Form( Form const & src ) : _name(src._name), _isSigned(src._isSigned), 
-      _gradeToSign(src._gradeToSign), _gradeToExecute(src._gradeToExecute) {
+      _signGrade(src._signGrade), _executeGrade(src._executeGrade) {
 
         std::cout << GRAY << "Form copy constructor called" << RESET<< std::endl;
       }
@@ -44,12 +44,12 @@ Form & Form::operator=( Form const & other ) {
 
 std::ostream & operator<<( std::ostream & lhs, Form const & rhs) {
     lhs << rhs.getName() << " signed? ";
-        if (rhs.getIsSigned())
+        if (rhs.getStatus())
             lhs << GREEN "YES" << RESET;
         else 
             lhs << RED << "NO" << RESET;
-    lhs << ". Grade required to sign: " << LGREEN << rhs.getGradeToSign() << RESET
-        << ". Grade required to execute: " << LGREEN << rhs.getGradeToExecute() << RESET;
+    lhs << ". Grade required to sign: " << LGREEN << rhs.getSignGrade() << RESET
+        << ". Grade required to execute: " << LGREEN << rhs.getExecuteGrade() << RESET;
 
     return (lhs);
 }
@@ -63,7 +63,7 @@ Form::~Form() {
 
 void Form::beSigned( Bureaucrat const & b ) {
     
-    if (b.getGrade() > this->_gradeToSign)
+    if (b.getGrade() > this->_signGrade)
         throw GradeTooLowException();
     _isSigned = true;
 }
@@ -71,7 +71,7 @@ void Form::beSigned( Bureaucrat const & b ) {
 // ---------------------------------------------------------- Setters & Getters
 
 std::string const & Form::getName() const { return _name; }
-bool Form::getIsSigned() const { return _isSigned; }
-int Form::getGradeToSign() const { return _gradeToSign; }
-int Form::getGradeToExecute() const { return _gradeToExecute; }
+bool Form::getStatus() const { return _isSigned; }
+int Form::getSignGrade() const { return _signGrade; }
+int Form::getExecuteGrade() const { return _executeGrade; }
 

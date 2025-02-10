@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Exceptions.hpp                                     :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 15:29:32 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 16:11:59 by okapshai         ###   ########.fr       */
+/*   Created: 2025/02/10 17:20:59 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/10 18:26:13 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include <exception>
-#include <iostream>
+#include "AForm.hpp"
 
-class GradeTooHighException : public std::exception {
+class PresidentialPardonForm : public AForm {
     
-    public:
-        
-        virtual const char* what() const throw() {
-        return "Exception caught: Grade is too high!\n";
-    }
+    public :
+        PresidentialPardonForm( std::string const & target );
+        PresidentialPardonForm( const PresidentialPardonForm & src );
+        ~PresidentialPardonForm();
+
+        PresidentialPardonForm & operator=( const PresidentialPardonForm & other );
+        void action() const;
 };
 
-class GradeTooLowException : public std::exception {
-    
-    public:
-    
-        virtual const char* what() const throw() {
-        return "Exception caught: Grade is too low!\n";
-    }
-};
