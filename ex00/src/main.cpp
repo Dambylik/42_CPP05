@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:10:08 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 13:36:12 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:52:47 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main() {
     std::cout << "------------------" << std::endl;
     
     try {
-        Bureaucrat a("Donald", 500);
+        Bureaucrat b1("Donald", 500);
     }
     catch ( const std::exception & e ) {
         std::cerr << e.what() << std::endl;
@@ -26,7 +26,7 @@ int main() {
     std::cout << "------------------" << std::endl;
     
     try {
-        Bureaucrat b("Emmanuel", -42);
+        Bureaucrat b2("Emmanuel", -42);
     }
     catch ( const std::exception & e ) {
         std::cerr << e.what() << std::endl;
@@ -35,14 +35,14 @@ int main() {
     std::cout << "------------------" << std::endl;
 
     try {
-        Bureaucrat c("Olaf", 2);
-        std::cout << c << std::endl;
+        Bureaucrat b3("Olaf", 2);
+        std::cout << b3 << std::endl;
         
-        c.incrementGrade();
-        std::cout << c << std::endl;
+        b3.incrementGrade();
+        std::cout << b3 << std::endl;
        
-        c.decrementGrade();
-         std::cout << c << std::endl;
+        b3.decrementGrade();
+         std::cout << b3 << std::endl;
     }
     catch ( const std::exception & e ) {
         std::cerr << e.what() << std::endl;

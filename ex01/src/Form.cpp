@@ -6,31 +6,23 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:00:07 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/08 13:22:12 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:46:23 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-// Form::Form( void ) {
-
-//     std::cout << GREEN << "Form default constructor called" << RESET<< std::endl;
-//     return;
-// }
-
 Form::Form( std::string const & name, int gradeToSign, int gradeToExecute ) 
     : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
     
-    if (gradeToSign < 1 || gradeToExecute < 1) {
-        std::cout << BLUE << "Constructor failed: Grade too high!" << RESET << std::endl;
+    std::cout << GREEN << "Form string-int constructor called" << RESET << std::endl;
+    
+    if (gradeToSign < 1 || gradeToExecute < 1)
         throw GradeTooHighException();
-    }
         
-    if (gradeToSign > 150 || gradeToExecute > 150) {
-        std::cout << BLUE << "Constructor failed: Grade too low!" << RESET << std::endl;
+    if (gradeToSign > 150 || gradeToExecute > 150)
         throw GradeTooLowException();
-    }
     return;
 }
 
@@ -51,10 +43,14 @@ Form & Form::operator=( Form const & other ) {
 }
 
 std::ostream & operator<<( std::ostream & lhs, Form const & rhs) {
-    lhs << rhs.getName() 
-        << ", signed: " << (rhs.getIsSigned() ? "Yes" : "No")
-        << ", grade required to sign: " << rhs.getGradeToSign()
-        << ", grade required to execute: " << rhs.getGradeToExecute();
+    lhs << rhs.getName() << " signed? ";
+        if (rhs.getIsSigned())
+            lhs << GREEN "YES" << RESET;
+        else 
+            lhs << RED << "NO" << RESET;
+    lhs << ". Grade required to sign: " << LGREEN << rhs.getGradeToSign() << RESET
+        << ". Grade required to execute: " << LGREEN << rhs.getGradeToExecute() << RESET;
+
     return (lhs);
 }
 
@@ -63,12 +59,11 @@ Form::~Form() {
     std::cout << RED << "Form destructor called" << RESET << std::endl;
 }
 
-
 // ---------------------------------------------------------- Methods
 
 void Form::beSigned( Bureaucrat const & b ) {
     
-    if (b.getGrade() > _gradeToSign)
+    if (b.getGrade() > this->_gradeToSign)
         throw GradeTooLowException();
     _isSigned = true;
 }

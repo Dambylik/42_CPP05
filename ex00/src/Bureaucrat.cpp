@@ -6,13 +6,13 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:09:45 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 13:36:54 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:18:13 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat( void ): _name("Bureaucrat"), _grade(1) {
+Bureaucrat::Bureaucrat( void ) {
 
     std::cout << GREEN << "Bureaucrat default constructor called" << RESET<< std::endl;
     return;
@@ -24,12 +24,11 @@ Bureaucrat::Bureaucrat( std::string const & name, int grade ) : _name(name) {
     
 	if (GradeOutOfRange(grade)) {
        
-	    if (grade < 1) {
+	    if (grade < 1)
             throw GradeTooHighException();
-        } 
-		else if (grade > 150) {
+		
+		if (grade > 150)
             throw GradeTooLowException();
-        }
     } 
 	else {
         this->_grade = grade;
@@ -82,7 +81,7 @@ void Bureaucrat::decrementGrade() {
   this->_grade += 1;
 }
 
-int Bureaucrat::GradeOutOfRange( int grade ) {
+bool Bureaucrat::GradeOutOfRange( int grade ) {
   
   return (grade < 1 || grade > 150);
 }

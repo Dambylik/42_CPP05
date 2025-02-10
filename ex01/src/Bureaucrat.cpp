@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:09:45 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/08 11:27:25 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:24:20 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,20 @@ Bureaucrat::Bureaucrat( void ) {
 }
 
 Bureaucrat::Bureaucrat( std::string const & name, int grade ) : _name(name) {
-
-    std::cout << GREEN << "Bureaucrat string-int constructor called"<< RESET << std::endl;
-
-    if (isGradeOutOfRange(grade)) {
-        
-          if ( grade < 1 ) {
-            std::cout << BLUE << "Constructor failed: Grade too high!" << RESET << std::endl;
+	
+    std::cout << GREEN << "Bureaucrat string-int constructor called" << RESET << std::endl;
+    
+	  if (GradeOutOfRange(grade)) {
+       
+	    if (grade < 1)
             throw GradeTooHighException();
-          }
-          
-          if ( grade > 150 )
-          {
-            std::cout << BLUE << "Constructor failed: Grade too low!" << RESET << std::endl;
+            
+		  if (grade > 150)
             throw GradeTooLowException();
-          }       
-    }
-    else 
+    } 
+	  else {
         this->_grade = grade;
-    return;
+    }
 }
 
 Bureaucrat::Bureaucrat( Bureaucrat const & src ): _name(src.getName()), _grade(src.getGrade()) {
@@ -71,7 +66,7 @@ Bureaucrat::~Bureaucrat() {
 
 void Bureaucrat::incrementGrade() {
 
-  if (this->_grade == 1) {
+  if (this->_grade <= 1) {
     throw GradeTooHighException();
   }
 
@@ -80,14 +75,14 @@ void Bureaucrat::incrementGrade() {
 
 void Bureaucrat::decrementGrade() {
 
-  if (this->_grade == 150) {
+  if (this->_grade >= 150) {
     throw GradeTooLowException();
   }
 
   this->_grade += 1;
 }
 
-int Bureaucrat::isGradeOutOfRange( int grade ) {
+bool Bureaucrat::GradeOutOfRange( int grade ) {
   
   return (grade < 1 || grade > 150);
 }
@@ -98,7 +93,7 @@ void Bureaucrat::signForm( Form & form ) {
         form.beSigned(*this);
         std::cout << this->_name << " signed " << form.getName() << std::endl;
     }
-    catch ( std::exception const & e) {
+    catch ( Form::GradeTooLowException const & e ) {
         std::cout << this->_name << " couldn’t sign " << form.getName() 
                   << " because " << e.what() << std::endl;
     }
