@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:10:08 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/08 12:02:34 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/08 13:25:16 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int main() {
     
     try {
-        Bureaucrat b1("Donald", 2);
+        Bureaucrat b1("Donald", 0);
         Bureaucrat b2("Emmanuel", 150);
 
         Form f1("Tax Form", 3, 5);

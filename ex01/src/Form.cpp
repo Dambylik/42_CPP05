@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:00:07 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/08 11:59:49 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/08 13:22:12 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ Form & Form::operator=( Form const & other ) {
 }
 
 std::ostream & operator<<( std::ostream & lhs, Form const & rhs) {
-    lhs << "Form " << rhs.getName() 
+    lhs << rhs.getName() 
         << ", signed: " << (rhs.getIsSigned() ? "Yes" : "No")
         << ", grade required to sign: " << rhs.getGradeToSign()
         << ", grade required to execute: " << rhs.getGradeToExecute();
@@ -79,3 +79,4 @@ std::string const & Form::getName() const { return _name; }
 bool Form::getIsSigned() const { return _isSigned; }
 int Form::getGradeToSign() const { return _gradeToSign; }
 int Form::getGradeToExecute() const { return _gradeToExecute; }
+

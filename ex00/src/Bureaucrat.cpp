@@ -6,38 +6,34 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:09:45 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/07 16:37:09 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:36:54 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat( void ) {
+Bureaucrat::Bureaucrat( void ): _name("Bureaucrat"), _grade(1) {
 
     std::cout << GREEN << "Bureaucrat default constructor called" << RESET<< std::endl;
     return;
 }
 
 Bureaucrat::Bureaucrat( std::string const & name, int grade ) : _name(name) {
-
-    std::cout << GREEN << "Bureaucrat string-int constructor called"<< RESET << std::endl;
-
-    if (isGradeOutOfRange(grade)) {
-        
-          if ( grade < 1 ) {
-            std::cout << BLUE << "Constructor failed: Grade too high!" << RESET << std::endl;
+	
+    std::cout << GREEN << "Bureaucrat string-int constructor called" << RESET << std::endl;
+    
+	if (GradeOutOfRange(grade)) {
+       
+	    if (grade < 1) {
             throw GradeTooHighException();
-          }
-          
-          if ( grade > 150 )
-          {
-            std::cout << BLUE << "Constructor failed: Grade too low!" << RESET << std::endl;
+        } 
+		else if (grade > 150) {
             throw GradeTooLowException();
-          }       
-    }
-    else 
+        }
+    } 
+	else {
         this->_grade = grade;
-    return;
+    }
 }
 
 Bureaucrat::Bureaucrat( Bureaucrat const & src ): _name(src.getName()), _grade(src.getGrade()) {
@@ -70,7 +66,7 @@ Bureaucrat::~Bureaucrat() {
 
 void Bureaucrat::incrementGrade() {
 
-  if (this->_grade == 1) {
+  if (this->_grade <= 1) {
     throw GradeTooHighException();
   }
 
@@ -79,14 +75,14 @@ void Bureaucrat::incrementGrade() {
 
 void Bureaucrat::decrementGrade() {
 
-  if (this->_grade == 150) {
+  if (this->_grade >= 150) {
     throw GradeTooLowException();
   }
 
   this->_grade += 1;
 }
 
-int Bureaucrat::isGradeOutOfRange( int grade ) {
+int Bureaucrat::GradeOutOfRange( int grade ) {
   
   return (grade < 1 || grade > 150);
 }
@@ -94,4 +90,4 @@ int Bureaucrat::isGradeOutOfRange( int grade ) {
 // ---------------------------------------------------------- Setters & Getters
 
 std::string const & Bureaucrat::getName() const { return this->_name; }
-unsigned int const & Bureaucrat::getGrade() const { return this->_grade; }
+int const & Bureaucrat::getGrade() const { return this->_grade; }

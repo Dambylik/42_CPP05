@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:07:01 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/08 11:23:29 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:36:39 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ class Bureaucrat {
 
         void                    incrementGrade();
 		void                    decrementGrade();
-		int                     isGradeOutOfRange( int i );
+		int                     GradeOutOfRange( int grade );
 
 		std::string const &     getName()   const;
-		unsigned int const &    getGrade()  const;
+		int const         &     getGrade()  const;
 
     protected:
 
     private:
 
         std::string const       _name;
-        unsigned int            _grade;
+        int                     _grade;
 };
 
 std::ostream & operator<<( std::ostream & lhs, Bureaucrat const & rhs );

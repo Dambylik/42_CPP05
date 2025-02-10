@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:29:32 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/08 11:26:09 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:06:30 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ class GradeTooHighException : public std::exception {
     
     public:
         
-        const char* what() const throw() {
-        return "Exception caught: Grade is too high!.\n";
+        virtual const char* what() const throw() {
+            return "Exception caught: Grade is too high!.\n";
     }
 };
 
@@ -27,7 +27,7 @@ class GradeTooLowException : public std::exception {
     
     public:
     
-        const char* what() const throw() {
-        return "Exception caught: Grade is too low!\n";
+        virtual const char* what() const throw() {
+            return "Exception caught: Grade is too low!\n";
     }
 };
