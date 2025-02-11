@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:10:29 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 14:16:14 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:11:32 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void ShrubberyCreationForm::execute( Bureaucrat const & executor ) const
     file << "  /\\O\\/\\*\\/\\  " << std::endl;
     file << " /\\*\\/\\*\\/\\/\\ " << std::endl;
     file << "/\\O\\/\\/*/\\/O/\\" << std::endl;
-    file << "       ||       " << std::endl;
-    file << "       ||       " << std::endl;
-    file << "       ||       " << std::endl;
+    file << "      ||       " << std::endl;
+    file << "      ||       " << std::endl;
+    file << "      ||       " << std::endl;
 
     file.close();
 }

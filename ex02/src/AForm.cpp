@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:43:03 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 13:57:07 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:07:19 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 AForm::AForm( void ):_name("Empty form"), _isSigned(false), _signGrade(0), _executeGrade(0) {
 
-    std::cout << ORANGE << "Form default constructor called" << RESET << "\n";
+    std::cout << ORANGE << "AForm default constructor called" << RESET << "\n";
 }
 
 AForm::AForm( std::string const & name, int gradeToSign, int gradeToExecute ): 
   _name(name), _isSigned(false), _signGrade(gradeToSign), _executeGrade(gradeToExecute) {
 
-std::cout << ORANGE << "AForm base with args constructor called" << RESET
+std::cout << ORANGE << "AForm string-int constructor called" << RESET
               << "\n";
   
 	if (gradeToExecute < 1 || gradeToExecute > 150 || gradeToSign < 1 || gradeToSign > 150 ) {
@@ -41,13 +41,13 @@ std::cout << ORANGE << "AForm base with args constructor called" << RESET
 AForm::AForm( AForm const & src ) : _name(src.getName()), _isSigned(false), 
       _signGrade(src.getSignGrade()), _executeGrade(src.getExecuteGrade()) {
 
-        std::cout << GRAY << "AForm copy constructor called" << RESET<< std::endl;
+        std::cout << ORANGE << "AForm copy constructor called" << RESET<< std::endl;
 		(*this) = src;
       }
 
 AForm & AForm::operator=( AForm const & other ) {
     
-    std::cout << LYELLOW << "AForm assignment operator called" << RESET << std::endl;
+    std::cout << ORANGE << "AForm assignment operator called" << RESET << std::endl;
      
     if (this != &other) {
         this->_isSigned = other.getStatus();
@@ -71,16 +71,17 @@ std::ostream & operator<<( std::ostream & lhs, AForm const & rhs ) {
     	}
   	} 
 	else {
-    lhs << "AForm " << LGREEN << rhs.getName() << RESET
-        << ", created with a grade of " << LGREEN << rhs.getSignGrade()
-        << RESET << ".\n\n";
+    lhs << YELLOW << rhs.getName() << RESET
+        << " created, required grade to sign: " << YELLOW << rhs.getSignGrade()
+        << RESET << " required grade to execute: " << YELLOW 
+        << rhs.getExecuteGrade() << RESET << ".\n\n";     
   	}
 	return (lhs);
 }
   
 AForm::~AForm() {
 
-    std::cout << RED << "AForm destructor called" << RESET << std::endl;
+    std::cout << ORANGE << "AForm destructor called" << RESET << std::endl;
 }
 
 // ---------------------------------------------------------- Methods

@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:30:54 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 13:42:08 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:07:52 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 Bureaucrat::Bureaucrat() : _name("Bubu"), _grade(0) {
 
-    std::cout << GREEN << "Bureaucrat default constructor called" << RESET<< std::endl;
+    std::cout << GRAY << "Bureaucrat default constructor called" << RESET<< std::endl;
     return;
 }
 
 
 Bureaucrat::Bureaucrat( std::string const & name, int grade ) : _name(name) {
 
-	std::cout << GREEN << "Bureaucrat string-int constructor called" << RESET << std::endl;
+	std::cout << GRAY << "Bureaucrat string-int constructor called" << RESET << std::endl;
 
     if (grade < 1 || grade > 150)
     {
@@ -48,7 +48,7 @@ Bureaucrat::Bureaucrat( Bureaucrat const & src ) {
 
 Bureaucrat & Bureaucrat::operator=( Bureaucrat const & other ) {
 
-    std::cout << LYELLOW << "Bureaucrat assignment operator called" << RESET << std::endl;
+    std::cout << GRAY << "Bureaucrat assignment operator called" << RESET << std::endl;
 
     if (this != &other)
         this->_grade = other._grade;
@@ -57,14 +57,14 @@ Bureaucrat & Bureaucrat::operator=( Bureaucrat const & other ) {
 
 std::ostream & operator<<( std::ostream & lhs, Bureaucrat const & rhs) {
 
-    lhs << rhs.getName() << ", bureaucrat grade " << LGREEN << rhs.getGrade()<< ".\n" << RESET;
+    lhs << LMAGENTA << rhs.getName() << RESET << ", bureaucrat grade " << LMAGENTA << rhs.getGrade()<< ".\n" << RESET;
     return (lhs);
 }
 
 
 Bureaucrat::~Bureaucrat() {
 
-    std::cout << RED << "Bureaucrat destructor called" << RESET << std::endl;
+    std::cout << GRAY << "Bureaucrat destructor called" << RESET << std::endl;
 }
 
 // ---------------------------------------------------------- Methods
@@ -91,11 +91,12 @@ void Bureaucrat::signForm( AForm & form ) {
     
     try {      
         form.beSigned(*this);
-        std::cout << this->getName() << " signed " << form.getName() << std::endl;
+        std::cout << LGREEN << this->getName() << RESET << " signed " << LGREEN 
+                << form.getName() << RESET << std::endl;
     }
     catch ( std::exception const & e ) {
-        std::cerr << this->getName() << " couldn’t sign " << form.getName() 
-                  << " because " << e.what() << std::endl;
+        std::cerr <<  LMAGENTA << this->getName() << RESET << " couldn’t sign " << form.getName() 
+                  << " because " << LMAGENTA << e.what() << RESET << std::endl;
     }
 }
 
@@ -103,11 +104,11 @@ void Bureaucrat::execForm( AForm & form ) {
 	
 	try {
 		form.execute(*this);
-		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+		std::cout  << LGREEN << this->getName() << RESET << " executed " << LGREEN << form.getName() << RESET << std::endl;
 	}
 	catch( std::exception const & e ) {
-		std::cerr << this->getName() << " couldn't execute " << form.getName() 
-					<< " because " << e.what() << std::endl;
+		std::cerr << LMAGENTA << this->getName() << RESET << " couldn't execute " << form.getName() 
+					<< " because " << LMAGENTA << e.what() << RESET << std::endl;
 	}
 }
 

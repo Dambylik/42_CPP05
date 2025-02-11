@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:04:14 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 14:08:37 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:08:46 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,27 @@
 RobotomyRequestForm::RobotomyRequestForm( std::string const & target )
 					: AForm("RobotomyRequestForm", 72, 45), _target(target) {
 	
-	std::cout << YELLOW << "RobotomyRequestForm string constructor called"
-				  << RESET << std::endl;
+    std::cout << BLUE << "Bureaucrat default constructor called" << RESET<< std::endl;
 	return;
 }
 
 RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm const & src )
 					: AForm(src), _target(src._target) {
 	
-	std::cout << YELLOW << "RobotomyRequestForm copy constructor called"
-			  << RESET << std::endl;
+	std::cout << BLUE << "RobotomyRequestForm copy constructor called" << RESET << std::endl;
 	return;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {
 
-	std::cout << YELLOW << "RobotomyRequestFormbase destructor called"
+	std::cout << BLUE << "RobotomyRequestFormbase destructor called"
 				  << RESET << std::endl;
 }
 
 
 RobotomyRequestForm & RobotomyRequestForm::operator=( RobotomyRequestForm const & other) {
 
-    std::cout << YELLOW << "RobotomyRequestFormbase assignment operator Called"
+    std::cout << BLUE << "RobotomyRequestFormbase assignment operator Called"
 			  << RESET << std::endl;
 
 	(void)other;
@@ -57,7 +55,7 @@ void RobotomyRequestForm::execute( Bureaucrat const & executor ) const {
 	srand(time(NULL));
 	int r = rand() % 100 + 1;
 	if (r > 50)
-		std::cout << this->_target << " has successfully been ROBOTOMIZED" << std::endl;
+		std::cout << GREEN << "YOUPEEEYYY !!! " <<this->_target << " has been robotomized successfully" << RESET << std::endl;
 	else
-		std::cout << this->_target << " has NOT been ROBOTOMIZED" << std::endl;
+		std::cout << LRED << "ZZZZZ !!! "<< this->_target << "'s robotomy failed" << RESET << std::endl;
 }
