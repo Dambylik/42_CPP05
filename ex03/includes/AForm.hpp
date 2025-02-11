@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:11:15 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 18:56:53 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:23:51 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class AForm {
 		AForm( std::string const & name, int signGrade, int execGrade );
 		AForm( AForm const & src );
 		
-		~AForm();
+		virtual ~AForm();
 
 		AForm &                  operator=( AForm const & other);
 

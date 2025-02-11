@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:43:03 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 18:51:38 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:07:19 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,15 @@ std::cout << ORANGE << "AForm string-int constructor called" << RESET
   
 	if (gradeToExecute < 1 || gradeToExecute > 150 || gradeToSign < 1 || gradeToSign > 150 ) {
         
+        try {
             if (_executeGrade < 1 || _signGrade < 1)
                 throw GradeTooHighException();
             if (_executeGrade > 150 || _signGrade > 150)
                 throw GradeTooLowException();
+        }
+        catch ( std::exception const & e ) {
+            std::cerr << e.what() << std::endl;
+        }
     }
 	return;
 }
