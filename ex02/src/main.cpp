@@ -1,42 +1,65 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 15:10:08 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 18:38:58 by okapshai         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
-#include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include <iostream>
 
-int main() {
+
+int main(void)
+{
+    std::cout << "\n-------------------CEO----------------------------------" << std::endl;
+
     try {
-        Bureaucrat boss("Alice", 1);
-        Bureaucrat intern("Bob", 140);
+        Bureaucrat bur = Bureaucrat("Big Boss", 1);
+	    ShrubberyCreationForm form("42Paris");
+	
+	    std::cout << bur;
+        std::cout << form;
+        bur.signForm(form);
+        bur.execForm(form);
 
-        ShrubberyCreationForm shrub("home");
-        RobotomyRequestForm robo("Bender");
-        PresidentialPardonForm pardon("Marvin");
+        RobotomyRequestForm dead("Olly");
+        std::cout << dead;
+        bur.signForm(dead);
+        bur.execForm(dead);
+        
+        PresidentialPardonForm mercy("Olly");
+        std::cout << mercy;
+        bur.signForm(mercy);
+        bur.execForm(mercy);
+    } catch(const std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
 
-        intern.signForm(shrub);
-        boss.executeForm(shrub);
+    std::cout << "\n-------------------INTERN-------------------------" << std::endl;
 
-        boss.signForm(robo);
-        boss.executeForm(robo);
+    try {
+        Bureaucrat bur = Bureaucrat("Intern", 150);
+	    ShrubberyCreationForm form("Useless Form");
+	
+	    std::cout << bur;
+        std::cout << form;
+        
+        bur.signForm(form);
+        bur.execForm(form);
 
-        boss.signForm(pardon);
-        boss.executeForm(pardon);
-    } 
-    
-    catch (std::exception &e) {
-        std::cerr << e.what() << std::endl;
-    }
+        RobotomyRequestForm dead("Olly");
+        std::cout << dead;
+        bur.signForm(dead);
+        bur.execForm(dead);
+        
+        PresidentialPardonForm mercy("Olly");
+        std::cout << mercy;
+        bur.signForm(mercy);
+        bur.execForm(mercy);
+        
+        std::cout << std::endl;
+
+    } catch(const std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
+
+    return (0);
 }
 

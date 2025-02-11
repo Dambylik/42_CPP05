@@ -1,27 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 17:22:23 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 18:26:10 by okapshai         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
 
-#pragma once
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 #include <cstdlib>
 
 class RobotomyRequestForm : public AForm {
-    
-    public :
-        RobotomyRequestForm( std::string const & target );
-        RobotomyRequestForm( const RobotomyRequestForm & src );
-        ~RobotomyRequestForm();
+public :
+	RobotomyRequestForm(const std::string& target);
+	~RobotomyRequestForm();
 
-        RobotomyRequestForm & operator=( const RobotomyRequestForm & other );
-        void action() const;
+	RobotomyRequestForm(const RobotomyRequestForm&);
+	RobotomyRequestForm& operator=(const RobotomyRequestForm&);
+	
+	void execute(const Bureaucrat&) const;
+
+protected:
+	RobotomyRequestForm();
+
+private :
+	const std::string& _target;
 };
 
+#endif // !ROBOTOMYREQUESTFORM_HPP

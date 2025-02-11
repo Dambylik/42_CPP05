@@ -1,42 +1,30 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Exceptions.hpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 15:29:32 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 17:20:27 by okapshai         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef EXCEPTIONS_HPP
+#define EXCEPTIONS_HPP
 
-#pragma once
-#include <exception>
 #include <iostream>
+#include <exception>
+
 
 class GradeTooHighException : public std::exception {
-    
     public:
-        
         virtual const char* what() const throw() {
-            return "Exception caught: Grade is too high!.\n";
+            return "Error Occured!\nGrade too high.\n";
     }
 };
 
 class GradeTooLowException : public std::exception {
-    
     public:
-    
         virtual const char* what() const throw() {
-            return "Exception caught: Grade is too low!\n";
+            return "Error Occured!\nGrade too low.\n";
     }
 };
 
 class UnsignedFormException : public std::exception {
-    
     public:
-    
         virtual const char* what() const throw() {
-            return "Error Occured: Grade is too low.\n";
+            return "Error Occured!\nGrade too low.\n";
     }
 };
+
+
+#endif // !EXCEPTIONS_HPP

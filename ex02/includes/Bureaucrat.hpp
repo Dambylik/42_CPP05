@@ -1,65 +1,55 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 14:07:01 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 18:30:16 by okapshai         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
-#pragma once
-
-#include <iostream>
-#include <string>
-#include <exception>
 #include "AForm.hpp"
 #include "Colors.hpp"
+#include <iostream>
+#include <string>
+
+#define DEBUG 0
+
+#define SUCCESS 0
+#define ERROR 1
 
 class AForm;
 
 class Bureaucrat {
-    
-    public:
+public:
+	Bureaucrat();
+	Bureaucrat(const std::string &, int);
+	~Bureaucrat();
 
-        Bureaucrat();
-        Bureaucrat( std::string const & name, int grade );
-        Bureaucrat( const Bureaucrat & src );
-        ~Bureaucrat();
+	Bureaucrat(const Bureaucrat &);
+	Bureaucrat &operator=(const Bureaucrat &);
 
-        Bureaucrat & operator=( const Bureaucrat & other );
+	class GradeTooHighException : public std::exception {
+		public:
+			virtual const char* what() const throw() {
+				return "Error Occured!\nGrade too high.\n";
+		}
+	};
 
-        // Getters
-        std::string const & getName() const;
-        int getGrade() const;
+	class GradeTooLowException : public std::exception {
+		public:
+			virtual const char* what() const throw() {
+				return "Error Occured!\nGrade too low.\n";
+		}
+	};
 
-        // Methods
-        void incrementGrade();
-        void decrementGrade();
-        void signForm( AForm & form ) const;
-        void executeForm( AForm const & form ) const;
+	void incrementGrade();
+	void decrementGrade();
 
-        // Exception Classes
-        class GradeTooHighException : public std::exception {
-            public:
-                virtual const char *what() const throw() {
-                    return "Bureaucrat Exception: Grade is too high.";
-                }
-        };
+	void signForm(AForm&);
+	void execForm(AForm&);
 
-        class GradeTooLowException : public std::exception {
-            public:
-                virtual const char *what() const throw() {
-                    return "Bureaucrat Exception: Grade is too low.";
-                }
-        };
+	const std::string getName() const;
+	int getGrade() const;
 
-    private:
-        const std::string _name;
-        int _grade;
+private:
+	const std::string name_;
+	int grade_;
 };
 
-// Overload of << operator for easy display
-std::ostream & operator<<( std::ostream & os, Bureaucrat const & bureaucrat );
+std::ostream& operator<<(std::ostream& lhs, const Bureaucrat& rhs);
+
+#endif // !BUREAUCRAT_HPP

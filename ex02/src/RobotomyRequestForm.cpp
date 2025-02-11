@@ -1,23 +1,65 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 17:35:42 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 18:24:31 by okapshai         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "RobotomyRequestForm.hpp"
-#include <iostream>
-#include <cstdlib>
 
-void RobotomyRequestForm::action() const {
-    std::cout << "* drilling noises *" << std::endl;
-    if (rand() % 2)
-        std::cout << getTarget() << " has been robotomized successfully!" << std::endl;
-    else
-        std::cout << getTarget() << "'s robotomy failed!" << std::endl;
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------- Args Constructor
+// ----------------------------------------------------------------------------
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
+					: AForm("RobotomyRequestForm", 72, 45), _target(target) {
+	if (DEBUG)
+		std::cout << YELLOW << "Robotomy request form arguments constructor called"
+				  << RESET << std::endl;
+}
+
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------- Copy Constructor
+// ----------------------------------------------------------------------------
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& rhs)
+					: AForm(rhs), _target(rhs._target) {
+  if (DEBUG)
+    std::cout << YELLOW << "Robotomy request form copy constructor called"
+			  << RESET << std::endl;
+}
+
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------- Destructor
+// ----------------------------------------------------------------------------
+RobotomyRequestForm::~RobotomyRequestForm() {
+	if (DEBUG)
+		std::cout << YELLOW << "Robotomy request form base destructor called"
+				  << RESET << std::endl;
+}
+
+
+// ----------------------------------------------------------------------------
+// ------------------------------------------------------------------- Overload
+// ----------------------------------------------------------------------------
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& rhs) {
+  if (DEBUG)
+    std::cout << YELLOW << "Robotomy request form base assignment operator Called"
+			  << RESET << std::endl;
+
+	(void)rhs;
+
+	return (*this);
+}
+
+
+// ----------------------------------------------------------------------------
+// -------------------------------------------------------------------- Methods
+// ----------------------------------------------------------------------------
+void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
+
+	if (this->getIsSigned() == false)
+		throw(AForm::UnsignedFormException());
+	else if(executor.getGrade() > this->getGradeToExec())
+		throw(AForm::GradeTooLowException());
+	
+	srand(time(NULL));
+	int r = rand() % 100 + 1;
+	if (r > 50)
+		std::cout << this->_target << " has successfully been ROBOTOMIZED" << std::endl;
+	else
+		std::cout << this->_target << " has NOT been ROBOTOMIZED" << std::endl;
 }

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   AForm.cpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 17:00:07 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 18:44:24 by okapshai         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "AForm.hpp"
 
 // ----------------------------------------------------------------------------
@@ -26,19 +14,20 @@ AForm::AForm()
 // ----------------------------------------------------------- Args Constructor
 // ----------------------------------------------------------------------------
 AForm::AForm(const std::string& name, int gradeToSign, int gradeToExec)
-                       : name_(name), isSigned_(false), gradeToExec_(gradeToExec), gradeToSign_(gradeToSign){
+                       : name_(name), isSigned_(false), gradeToSign_(gradeToSign), gradeToExec_(gradeToExec) {
 
-  if (DEBUG)
-    std::cout << ORANGE << "AForm base with args constructor called" << RESET
+std::cout << ORANGE << "AForm base with args constructor called" << RESET
               << "\n";
 
     if (gradeToExec < 1 || gradeToExec > 150 || gradeToSign < 1 || gradeToSign > 150 ) {
+        
         try {
             if (gradeToExec_ < 1 || gradeToSign_ < 1)
                 throw GradeTooHighException();
             if (gradeToExec_ > 150 || gradeToSign_ > 150)
                 throw GradeTooLowException();
-        } catch (const std::exception &e) {
+        }
+        catch (const std::exception &e) {
             std::cerr << e.what() << std::endl;
         }
     }

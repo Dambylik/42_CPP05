@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 15:09:45 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 18:44:48 by okapshai         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
 
 // ----------------------------------------------------------------------------
@@ -50,11 +38,12 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) : name_(name) {
     // ----------------------------------------------------------- Copy Constructor
     // ----------------------------------------------------------------------------
     Bureaucrat::Bureaucrat(const Bureaucrat& rhs) {
+      
       if (DEBUG)
         std::cout << GREEN << "Bureaucrat Copy Constructor called"
                   << RESET << std::endl;
 
-        *this = rhs;
+      (*this) = rhs;
     }
 
 
