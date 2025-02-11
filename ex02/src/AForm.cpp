@@ -1,117 +1,100 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/11 13:43:03 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/11 13:57:07 by okapshai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "AForm.hpp"
 
-// ----------------------------------------------------------------------------
-// ---------------------------------------------------------------- Constructor
-// ----------------------------------------------------------------------------
-AForm::AForm()
-	  :name_("Name undefined"), isSigned_(false), gradeToSign_(10), gradeToExec_(10) {
-  if (DEBUG)
-    std::cout << ORANGE << "AForm base constructor called" << RESET << "\n";
+AForm::AForm( void ):_name("Empty form"), _isSigned(false), _signGrade(0), _executeGrade(0) {
+
+    std::cout << ORANGE << "Form default constructor called" << RESET << "\n";
 }
 
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------- Args Constructor
-// ----------------------------------------------------------------------------
-AForm::AForm(const std::string& name, int gradeToSign, int gradeToExec)
-                       : name_(name), isSigned_(false), gradeToSign_(gradeToSign), gradeToExec_(gradeToExec) {
+AForm::AForm( std::string const & name, int gradeToSign, int gradeToExecute ): 
+  _name(name), _isSigned(false), _signGrade(gradeToSign), _executeGrade(gradeToExecute) {
 
 std::cout << ORANGE << "AForm base with args constructor called" << RESET
               << "\n";
-
-    if (gradeToExec < 1 || gradeToExec > 150 || gradeToSign < 1 || gradeToSign > 150 ) {
+  
+	if (gradeToExecute < 1 || gradeToExecute > 150 || gradeToSign < 1 || gradeToSign > 150 ) {
         
         try {
-            if (gradeToExec_ < 1 || gradeToSign_ < 1)
+            if (_executeGrade < 1 || _signGrade < 1)
                 throw GradeTooHighException();
-            if (gradeToExec_ > 150 || gradeToSign_ > 150)
+            if (_executeGrade > 150 || _signGrade > 150)
                 throw GradeTooLowException();
         }
-        catch (const std::exception &e) {
+        catch ( std::exception const & e ) {
             std::cerr << e.what() << std::endl;
         }
     }
+	return;
 }
 
+AForm::AForm( AForm const & src ) : _name(src.getName()), _isSigned(false), 
+      _signGrade(src.getSignGrade()), _executeGrade(src.getExecuteGrade()) {
 
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------- Copy Constructor
-// ----------------------------------------------------------------------------
-AForm::AForm(const AForm& rhs)
-	  : name_(rhs.getName()), isSigned_(false), gradeToSign_(rhs.getGradeToSign()), gradeToExec_(rhs.getGradeToExec()) {
+        std::cout << GRAY << "AForm copy constructor called" << RESET<< std::endl;
+		(*this) = src;
+      }
 
-  if (DEBUG)
-    std::cout << ORANGE << "AForm Base Copy Constructor Called" << RESET
-              << std::endl;
-
-	*this = rhs;
+AForm & AForm::operator=( AForm const & other ) {
+    
+    std::cout << LYELLOW << "AForm assignment operator called" << RESET << std::endl;
+     
+    if (this != &other) {
+        this->_isSigned = other.getStatus();
+    }
+    return (*this);
 }
 
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------- Destructor
-// ----------------------------------------------------------------------------
+std::ostream & operator<<( std::ostream & lhs, AForm const & rhs ) {
+	
+	if ((rhs.getExecuteGrade() < 1 || rhs.getExecuteGrade() > 150) ||
+      (rhs.getSignGrade() < 1 || rhs.getSignGrade() > 150)) {
+		
+		try {
+			if (rhs.getSignGrade() < 1 || rhs.getExecuteGrade() < 1)
+				throw "AForm exception caught: Grade is too high!\n";
+			if (rhs.getSignGrade() > 150 || rhs.getExecuteGrade() > 150)
+				throw "AForm exception caught: Grade is too low!\n";
+    	}
+		catch (const char *e) {
+    		std::cerr << e << std::endl;
+    	}
+  	} 
+	else {
+    lhs << "AForm " << LGREEN << rhs.getName() << RESET
+        << ", created with a grade of " << LGREEN << rhs.getSignGrade()
+        << RESET << ".\n\n";
+  	}
+	return (lhs);
+}
+  
 AForm::~AForm() {
-  if (DEBUG)
-    std::cout << ORANGE << "AForm base destructor called" << RESET << std::endl;
+
+    std::cout << RED << "AForm destructor called" << RESET << std::endl;
 }
 
+// ---------------------------------------------------------- Methods
 
-// ----------------------------------------------------------------------------
-// ------------------------------------------------------------------- Overload
-// ----------------------------------------------------------------------------
-AForm& AForm::operator=(const AForm& rhs) {
-
-	if (DEBUG)
-    std::cout << ORANGE << "AForm assignment operator overload called" << RESET << std::endl;
-
-	if (this != &rhs) {
-		this->isSigned_ = rhs.getIsSigned();
-	}
-
-	return *this;
-}
-
-
-// ----------------------------------------------------------------------------
-// -------------------------------------------------------------------- Getters
-// ----------------------------------------------------------------------------
-const std::string& AForm::getName() const {	return this->name_; }
-bool AForm::getIsSigned() const { return this->isSigned_; } 
-int AForm::getGradeToSign() const { return (this->gradeToSign_); }
-int	AForm::getGradeToExec() const { return (this->gradeToExec_); }
-
-void AForm::beSigned(const Bureaucrat& bae) {
-	if (bae.getGrade() <= this->gradeToSign_)
-		this->isSigned_ = true;
+void AForm::beSigned( Bureaucrat const & b ) {
+	if (b.getGrade() <= this->_signGrade)
+		this->_isSigned = true;
 	else
 		throw(Bureaucrat::GradeTooLowException());
 }
 
+// ---------------------------------------------------------- Setters & Getters
 
-// ----------------------------------------------------------------------------
-// -------------------------------------------------------------------- ostream
-// ----------------------------------------------------------------------------
-std::ostream &operator<<(std::ostream &lhs, AForm const &rhs) {
-  if (DEBUG)
-    std::cout << ORANGE << "AForm Base << Assignment Operator Called" << RESET
-              << std::endl;
-
-  if ((rhs.getGradeToExec() < 1 || rhs.getGradeToExec() > 150) ||
-      (rhs.getGradeToSign() < 1 || rhs.getGradeToSign() > 150)) {
-    try {
-      if (rhs.getGradeToSign() < 1 || rhs.getGradeToExec() < 1)
-        throw "Exception error occured.\nGrade too high.\n";
-      if (rhs.getGradeToSign() > 150 || rhs.getGradeToExec() > 150)
-        throw "Exception error occured.\nGrade too low.\n";
-    } catch (const char *e) {
-      std::cerr << e << std::endl;
-    }
-  } else {
-    lhs << "AForm " << LGREEN << rhs.getName() << RESET
-        << ", created with a grade of " << LGREEN << rhs.getGradeToSign()
-        << RESET << ".\n\n";
-  }
-
-  return lhs;
-}
+std::string const & AForm::getName() const { return this->_name; }
+bool AForm::getStatus() const { return this->_isSigned; } 
+int AForm::getSignGrade() const { return (this->_signGrade); }
+int	AForm::getExecuteGrade() const { return (this->_executeGrade); }

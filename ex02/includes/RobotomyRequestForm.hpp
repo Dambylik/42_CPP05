@@ -1,25 +1,41 @@
-#ifndef ROBOTOMYREQUESTFORM_HPP
-#define ROBOTOMYREQUESTFORM_HPP
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/11 13:28:15 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/11 14:09:46 by okapshai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#pragma once
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include <cstdlib>
+#include "Colors.hpp"
+#include <stdlib.h>
 
 class RobotomyRequestForm : public AForm {
-public :
-	RobotomyRequestForm(const std::string& target);
-	~RobotomyRequestForm();
-
-	RobotomyRequestForm(const RobotomyRequestForm&);
-	RobotomyRequestForm& operator=(const RobotomyRequestForm&);
 	
-	void execute(const Bureaucrat&) const;
+	public :
+	
+		RobotomyRequestForm( std::string const & target );
+		RobotomyRequestForm( RobotomyRequestForm const & src );
+		
+		~RobotomyRequestForm();
+		
+		
+		RobotomyRequestForm & 		operator=( RobotomyRequestForm const & other );
 
-protected:
-	RobotomyRequestForm();
+		void						execute( Bureaucrat const & executor ) const;
 
-private :
-	const std::string& _target;
+	protected:
+
+		RobotomyRequestForm( void );
+
+	private :
+		
+		std::string const & 		_target;
 };
-
-#endif // !ROBOTOMYREQUESTFORM_HPP

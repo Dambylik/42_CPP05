@@ -6,12 +6,18 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:00:07 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 16:49:21 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:47:38 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
+
+Form::Form( void ):_name("Empty form"), _isSigned(false), _signGrade(0), _executeGrade(0) {
+
+    std::cout << ORANGE << "Form default constructor called" << RESET << "\n";
+    return;
+}
 
 Form::Form( std::string const & name, int gradeToSign, int gradeToExecute ) 
     : _name(name), _isSigned(false), _signGrade(gradeToSign), _executeGrade(gradeToExecute) {

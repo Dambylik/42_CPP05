@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:09:45 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 17:02:27 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:41:05 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void Bureaucrat::signForm( Form & form ) {
         std::cout << this->_name << " signed " << form.getName() << std::endl;
     }
     catch ( Form::GradeTooLowException const & e ) {
-        std::cout << this->_name << " couldn’t sign " << form.getName() 
+        std::cerr << this->_name << " couldn’t sign " << form.getName() 
                   << " because " << e.what() << std::endl;
     }
 }

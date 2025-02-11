@@ -1,105 +1,72 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/11 14:10:29 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/11 14:16:14 by okapshai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ShrubberyCreationForm.hpp"
 
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------- Args Constructor
-// ----------------------------------------------------------------------------
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
+ShrubberyCreationForm::ShrubberyCreationForm( std::string const & target )
 					  : AForm("ShrubberyCreationForm", 145, 137), _target(target) {
-    if (DEBUG)
-        std::cout << CYAN << "Shrubbery Creation Form args constructor called"
+
+	std::cout << CYAN << "ShrubberyCreationForm string constructor called"
 				  << RESET << std::endl;
+	return;
 }
 
+ShrubberyCreationForm::ShrubberyCreationForm( ShrubberyCreationForm const & src)
+					  : AForm(src), _target(src._target) {
 
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------- Destructor
-// ----------------------------------------------------------------------------
-ShrubberyCreationForm::~ShrubberyCreationForm() {
-    if (DEBUG)
-        std::cout << CYAN << "Shrubbery Creation Form destructor calledaa"
+    std::cout << CYAN << "ShrubberyCreationForm copy constructor called"
 				  << RESET << std::endl;
+	return;			  
 }
 
+ShrubberyCreationForm & ShrubberyCreationForm::operator=( ShrubberyCreationForm const & other ) {
 
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------- Copy Constructor
-// ----------------------------------------------------------------------------
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& rhs)
-					  : AForm(rhs), _target(rhs._target) {
-    if (DEBUG)
-        std::cout << CYAN << "Shrubbery Creation Form copy constructor called"
-				  << RESET << std::endl;
-}
-
-
-// ----------------------------------------------------------------------------
-// ------------------------------------------------------------------- Overload
-// ----------------------------------------------------------------------------
-ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& rhs) {
-
-
-    std::cout << CYAN << "Shrubbery Creation Form assignment operator called"
+    std::cout << CYAN << "ShrubberyCreationFormassignment operator called"
 				  << RESET << std::endl;
 
-	(void)rhs;
+	(void)other;
+	
 	return (*this);
 }
 
+ShrubberyCreationForm::~ShrubberyCreationForm() {
+    
+	std::cout << CYAN << "ShrubberyCreationForm destructor called"
+				  << RESET << std::endl;
+}
 
-// ----------------------------------------------------------------------------
-// -------------------------------------------------------------------- Methods
-// ----------------------------------------------------------------------------
-void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
+
+// ---------------------------------------------------------- Methods
+
+void ShrubberyCreationForm::execute( Bureaucrat const & executor ) const
 {
-	if (this->getIsSigned() == false)
+	if (this->getStatus() == false)
 		throw(AForm::UnsignedFormException());
-	else if (executor.getGrade() > this->getGradeToExec())
+	else if (executor.getGrade() > this->getExecuteGrade())
 		throw(AForm::GradeTooLowException());
 
 	std::string l = this->_target + "_shrubbery";
 	const char* p = l.c_str();
 	std::ofstream file(p, std::ios_base::app);
-	file << "                                                         ." << std::endl;
-	file << "                                              .         ;  " << std::endl;
-	file << "                 .              .              ;%     ;;   " << std::endl;
-	file << "                   ,           ,                :;%  %;   " << std::endl;
-	file << "                    :         ;                   :;%;'     .,   " << std::endl;
-	file << "           ,.        %;     %;            ;        %;'    ,;" << std::endl;
-	file << "             ;       ;%;  %%;        ,     %;    ;%;    ,%'" << std::endl;
-	file << "              %;       %;%;      ,  ;       %;  ;%;   ,%;' " << std::endl;
-	file << "               ;%;      %;        ;%;        % ;%;  ,%;'" << std::endl;
-	file << "                `%;.     ;%;     %;'         `;%%;.%;'" << std::endl;
-	file << "                 `:;%.    ;%%. %@;        %; ;@%;%'" << std::endl;
-	file << "                    `:%;.  :;bd%;          %;@%;'" << std::endl;
-	file << "                      `@%:.  :;%.         ;@@%;'   " << std::endl;
-	file << "                        `@%.  `;@%.      ;@@%;         " << std::endl;
-	file << "                          `@%%. `@%%    ;@@%;        " << std::endl;
-	file << "                            ;@%. :@%%  %@@%;       " << std::endl;
-	file << "                              %@bd%%%bd%%:;     " << std::endl;
-	file << "                                #@%%%%%:;;" << std::endl;
-	file << "                                %@@%%%::;" << std::endl;
-	file << "                                %@@@%(o);  . '         " << std::endl;
-	file << "                                %@@@o%;:(.,'         " << std::endl;
-	file << "                            `.. %@@@o%::;         " << std::endl;
-	file << "                               `)@@@o%::;         " << std::endl;
-	file << "                                %@@(o)::;        " << std::endl;
-	file << "                               .%@@@@%::;         " << std::endl;
-	file << "                               ;%@@@@%::;.          " << std::endl;
-	file << "                              ;%@@@@%%:;;;. " << std::endl;
-	file << "                          ...;%@@@@@%%:;;;;,.." << std::endl;
-	file.close();
-}
-//     // Write an ASCII tree into the file
-//     file << "      /\\      " << std::endl;
-//     file << "     /\\*\\     " << std::endl;
-//     file << "    /\\O\\*\\    " << std::endl;
-//     file << "   /*/\\/\\/\\   " << std::endl;
-//     file << "  /\\O\\/\\*\\/\\  " << std::endl;
-//     file << " /\\*\\/\\*\\/\\/\\ " << std::endl;
-//     file << "/\\O\\/\\/*/\\/O/\\" << std::endl;
-//     file << "       ||       " << std::endl;
-//     file << "       ||       " << std::endl;
-//     file << "       ||       " << std::endl;
+    file << "      /\\      " << std::endl;
+    file << "     /\\*\\     " << std::endl;
+    file << "    /\\O\\*\\    " << std::endl;
+    file << "   /*/\\/\\/\\   " << std::endl;
+    file << "  /\\O\\/\\*\\/\\  " << std::endl;
+    file << " /\\*\\/\\*\\/\\/\\ " << std::endl;
+    file << "/\\O\\/\\/*/\\/O/\\" << std::endl;
+    file << "       ||       " << std::endl;
+    file << "       ||       " << std::endl;
+    file << "       ||       " << std::endl;
 
-//     file.close();
-// }
+    file.close();
+}

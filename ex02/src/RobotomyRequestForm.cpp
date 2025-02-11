@@ -1,59 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/11 14:04:14 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/11 14:08:37 by okapshai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "RobotomyRequestForm.hpp"
 
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------- Args Constructor
-// ----------------------------------------------------------------------------
-RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
+RobotomyRequestForm::RobotomyRequestForm( std::string const & target )
 					: AForm("RobotomyRequestForm", 72, 45), _target(target) {
-	if (DEBUG)
-		std::cout << YELLOW << "Robotomy request form arguments constructor called"
+	
+	std::cout << YELLOW << "RobotomyRequestForm string constructor called"
 				  << RESET << std::endl;
+	return;
 }
 
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------- Copy Constructor
-// ----------------------------------------------------------------------------
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& rhs)
-					: AForm(rhs), _target(rhs._target) {
-  if (DEBUG)
-    std::cout << YELLOW << "Robotomy request form copy constructor called"
+RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm const & src )
+					: AForm(src), _target(src._target) {
+	
+	std::cout << YELLOW << "RobotomyRequestForm copy constructor called"
 			  << RESET << std::endl;
+	return;
 }
 
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------- Destructor
-// ----------------------------------------------------------------------------
 RobotomyRequestForm::~RobotomyRequestForm() {
-	if (DEBUG)
-		std::cout << YELLOW << "Robotomy request form base destructor called"
+
+	std::cout << YELLOW << "RobotomyRequestFormbase destructor called"
 				  << RESET << std::endl;
 }
 
 
-// ----------------------------------------------------------------------------
-// ------------------------------------------------------------------- Overload
-// ----------------------------------------------------------------------------
-RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& rhs) {
-  if (DEBUG)
-    std::cout << YELLOW << "Robotomy request form base assignment operator Called"
+RobotomyRequestForm & RobotomyRequestForm::operator=( RobotomyRequestForm const & other) {
+
+    std::cout << YELLOW << "RobotomyRequestFormbase assignment operator Called"
 			  << RESET << std::endl;
 
-	(void)rhs;
+	(void)other;
 
 	return (*this);
 }
 
+// ---------------------------------------------------------- Methods
 
-// ----------------------------------------------------------------------------
-// -------------------------------------------------------------------- Methods
-// ----------------------------------------------------------------------------
-void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
+void RobotomyRequestForm::execute( Bureaucrat const & executor ) const {
 
-	if (this->getIsSigned() == false)
+	if (this->getStatus() == false)
 		throw(AForm::UnsignedFormException());
-	else if(executor.getGrade() > this->getGradeToExec())
+	else if(executor.getGrade() > this->getExecuteGrade())
 		throw(AForm::GradeTooLowException());
 	
 	srand(time(NULL));

@@ -1,59 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/11 13:57:35 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/11 14:06:35 by okapshai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PresidentialPardonForm.hpp"
 
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------- Args Constructor
-// ----------------------------------------------------------------------------
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-					   : AForm("PresidentialPardonForm", 25, 5), target_(target) {
-    if (DEBUG)
-        std::cout << MAGENTA << "PresidentialPardonForm args derived constructor called"
+PresidentialPardonForm::PresidentialPardonForm( std::string const & target ): 
+                        AForm("PresidentialPardonForm", 25, 5), _target(target) {
+        
+    std::cout << MAGENTA << "PresidentialPardonForm string constructor called"
                   << RESET << std::endl;
+    return;
 }
 
+PresidentialPardonForm::PresidentialPardonForm( PresidentialPardonForm const & src )
+					   : AForm(src), _target(src._target) {
 
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------- Copy Constructor
-// ----------------------------------------------------------------------------
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& rhs)
-					   : AForm(rhs), target_(rhs.target_) {
-    if (DEBUG)
-        std::cout << MAGENTA << "PresidentialPardonForm derived copy constructor called"
+    std::cout << MAGENTA << "PresidentialPardonForm copy constructor called"
                   << RESET << std::endl;
+    return;
 }
 
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------- Destructor
-// ----------------------------------------------------------------------------
-PresidentialPardonForm::~PresidentialPardonForm() {
-    if (DEBUG)
-        std::cout << MAGENTA << "PresidentialPardonForm derived destructor called"
-                  << RESET << std::endl;
-}
-
-
-// ----------------------------------------------------------------------------
-// ------------------------------------------------------------------- Overload
-// ----------------------------------------------------------------------------
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& rhs)
+PresidentialPardonForm & PresidentialPardonForm::operator=( PresidentialPardonForm const & other)
 {
-    std::cout << MAGENTA << "PresidentialPardonForm assignment copy operator called"
+    std::cout << MAGENTA << "PresidentialPardonForm assignment operator called"
                   << RESET << std::endl;
-    (void)rhs;
+    (void)other;
 
 	return (*this);
 }
 
+PresidentialPardonForm::~PresidentialPardonForm() {
 
-// ----------------------------------------------------------------------------
-// -------------------------------------------------------------------- Methods
-// ----------------------------------------------------------------------------
-void	PresidentialPardonForm::execute(const Bureaucrat& executor) const {
+    std::cout << MAGENTA << "PresidentialPardonForm destructor called"
+                  << RESET << std::endl;
+}
 
-	if (this->getIsSigned() == false)
+// ---------------------------------------------------------- Methods
+
+void	PresidentialPardonForm::execute( Bureaucrat const & executor ) const {
+
+	if (this->getStatus() == false)
 		throw(AForm::UnsignedFormException());
-	else if (executor.getGrade() > this->getGradeToExec())
+	else if (executor.getGrade() > this->getExecuteGrade())
 		throw(AForm::GradeTooLowException());
 		
-	std::cout << this->target_ << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+	std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

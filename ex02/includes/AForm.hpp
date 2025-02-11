@@ -1,58 +1,71 @@
-#ifndef AFORM_HPP
-#define AFORM_HPP
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/11 13:11:15 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/11 13:30:05 by okapshai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#pragma once
 #include "Bureaucrat.hpp"
 #include <iostream>
 
 class Bureaucrat;
 
 class AForm {
-public:
-	AForm(const std::string &, int, int);
-	~AForm();
+	
+	public:
+	
+		AForm( std::string const & name, int signGrade, int execGrade );
+		AForm( AForm const & src );
+		
+		~AForm();
 
-	AForm(const AForm &);
-	AForm &operator=(const AForm &);
+		AForm &                  operator=( AForm const & other);
 
-	class GradeTooHighException : public std::exception {
-		public:
-			virtual const char* what() const throw() {
-				return "Error Occured!\nGrade too high.\n";
-		}
-	};
+		class GradeTooHighException : public std::exception {
+			public:
+				virtual const char* what() const throw() {
+					return "AForm exception caught: Grade is too high!\n";
+			}
+		};
 
-	class GradeTooLowException : public std::exception {
-		public:
-			virtual const char* what() const throw() {
-				return "Error Occured!\nGrade too low.\n";
-		}
-	};
+		class GradeTooLowException : public std::exception {
+			public:
+				virtual const char* what() const throw() {
+					return "AForm exception caught: Grade is too low!\n";
+			}
+		};
 
-	class UnsignedFormException : public std::exception {
-		public:
-			virtual const char* what() const throw() {
-				return "Error Occured!\nGrade too low.\n";
-		}
-	};
+		class UnsignedFormException : public std::exception {
+			public:
+				virtual const char* what() const throw() {
+					return "AForm exception caught: Grade is too low!\n";
+			}
+		};
 
-	const std::string& getName() const;
-	bool getIsSigned() const;
-	int getGradeToSign() const;
-	int getGradeToExec() const;
+		std::string const &     getName() 			const;
+		bool 					getStatus() 		const;
+		int 					getSignGrade() 		const;
+		int 					getExecuteGrade() 	const;
 
-	void beSigned(const Bureaucrat&);
-	virtual void execute(Bureaucrat const& executioner) const = 0;
+		void 					beSigned( Bureaucrat const & b);
+		virtual void 			execute( Bureaucrat const & executioner ) const = 0;
 
-protected:
-	AForm();
+	protected:
+		
+		AForm( void );
 
-private:
-	const std::string name_;
-	bool isSigned_;
-	const int gradeToSign_;
-	const int gradeToExec_;
+	private:
+		const std::string 		_name;
+		bool 					_isSigned;
+		
+		int const 				_signGrade;
+		int const 				_executeGrade;
 };
 
 std::ostream& operator<<(std::ostream& lhs, const AForm& rhs);
-
-#endif // !AFORM_HPP
