@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:04:14 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/12 16:32:23 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:05:11 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void RobotomyRequestForm::execute( Bureaucrat const & executor ) const {
 	else if(executor.getGrade() > this->getExecuteGrade())
 		throw(AForm::GradeTooLowException());
 	
+	srand(time(NULL));
 	int r = rand() % 100 + 1;
 	if (r > 50)
 		std::cout << GREEN << "YOUPEEEYYY !!! " <<this->_target << " has been robotomized successfully" << RESET << std::endl;

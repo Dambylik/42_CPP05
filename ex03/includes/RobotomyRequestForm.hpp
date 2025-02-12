@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 13:29:37 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/12 16:31:20 by okapshai         ###   ########.fr       */
+/*   Created: 2025/02/11 13:28:15 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/12 16:31:38 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include "Colors.hpp"
-#include <fstream>
+#include <stdlib.h>
 
-class ShrubberyCreationForm : public AForm {
+class RobotomyRequestForm : public AForm {
 	
 	public :
 	
-		ShrubberyCreationForm( void );
-		ShrubberyCreationForm( std::string const & target );
-		ShrubberyCreationForm( ShrubberyCreationForm const & src );
+		RobotomyRequestForm( void );
+		RobotomyRequestForm( std::string const & target );
+		RobotomyRequestForm( RobotomyRequestForm const & src );
 		
-		~ShrubberyCreationForm();
+		~RobotomyRequestForm();
 		
 		
-		ShrubberyCreationForm & 	operator=( ShrubberyCreationForm const & other );
+		RobotomyRequestForm & 		operator=( RobotomyRequestForm const & other );
 
 		void						execute( Bureaucrat const & executor ) const;
 
@@ -36,5 +36,5 @@ class ShrubberyCreationForm : public AForm {
 
 	private :
 		
-		std::string	 				_target;
+		std::string 				_target;
 };

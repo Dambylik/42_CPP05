@@ -7,6 +7,7 @@
 
 int main() {
     
+    srand(time(NULL));
     std::cout << "-----------------------------------" << std::endl;
     
     try {
@@ -28,6 +29,8 @@ int main() {
         std::cout << robot;
         b1.signForm(robot);
         b1.executeForm(robot);
+        for (int i = 0; i < 20; ++i)
+            b1.executeForm(robot);
 
         std::cout << std::endl << "-----------------------------------" << std::endl;
 

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 13:29:37 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/12 16:31:20 by okapshai         ###   ########.fr       */
+/*   Created: 2025/02/11 13:23:59 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/12 16:31:35 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include "Colors.hpp"
-#include <fstream>
 
-class ShrubberyCreationForm : public AForm {
+class PresidentialPardonForm : public AForm {
 	
 	public :
-	
-		ShrubberyCreationForm( void );
-		ShrubberyCreationForm( std::string const & target );
-		ShrubberyCreationForm( ShrubberyCreationForm const & src );
+
+		PresidentialPardonForm( void );
+		PresidentialPardonForm( std::string const & target );
+		PresidentialPardonForm( PresidentialPardonForm const & src );
 		
-		~ShrubberyCreationForm();
+		~PresidentialPardonForm();
 		
 		
-		ShrubberyCreationForm & 	operator=( ShrubberyCreationForm const & other );
+		PresidentialPardonForm & 	operator=( PresidentialPardonForm const & other );
 
 		void						execute( Bureaucrat const & executor ) const;
 
@@ -36,5 +34,6 @@ class ShrubberyCreationForm : public AForm {
 
 	private :
 		
-		std::string	 				_target;
+		std::string 	 			_target;
 };
+
