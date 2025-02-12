@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:28:15 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 14:09:46 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:56:30 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ class RobotomyRequestForm : public AForm {
 	
 	public :
 	
+		RobotomyRequestForm( void );
 		RobotomyRequestForm( std::string const & target );
 		RobotomyRequestForm( RobotomyRequestForm const & src );
 		
-		~RobotomyRequestForm();
+		virtual ~RobotomyRequestForm();
 		
 		
 		RobotomyRequestForm & 		operator=( RobotomyRequestForm const & other );
@@ -33,9 +34,7 @@ class RobotomyRequestForm : public AForm {
 
 	protected:
 
-		RobotomyRequestForm( void );
-
 	private :
 		
-		std::string const & 		_target;
+		std::string 				_target;
 };

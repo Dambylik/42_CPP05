@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:09:45 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 17:01:08 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:12:53 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ Bureaucrat::Bureaucrat( std::string const & name, int grade ) : _name(name) {
     std::cout << GREEN << "Bureaucrat string-int constructor called" << RESET << std::endl;
     
 	if (grade < 1)
-        throw GradeTooHighException();
-		
+        throw Bureaucrat::GradeTooHighException();	
 	else if (grade > 150)
-            throw GradeTooLowException();
+        throw Bureaucrat::GradeTooLowException();
 	else 
         this->_grade = grade;
 }
@@ -47,7 +46,7 @@ Bureaucrat & Bureaucrat::operator=( Bureaucrat const & other ) {
 
 std::ostream & operator<<( std::ostream & lhs, Bureaucrat const & rhs) {
 
-    lhs << rhs.getName() << ", bureaucrat grade " << LGREEN << rhs.getGrade()<< ".\n" << RESET;
+    lhs << LGREEN << rhs.getName() << RESET << ", bureaucrat grade " << LGREEN << rhs.getGrade()<< ".\n" << RESET;
     return (lhs);
 }
 
@@ -62,7 +61,7 @@ Bureaucrat::~Bureaucrat() {
 void Bureaucrat::incrementGrade() {
 
   if (this->_grade - 1 < 1) {
-    throw GradeTooHighException();
+    throw Bureaucrat::GradeTooHighException();
   }
   else
   	this->_grade--;
@@ -71,7 +70,7 @@ void Bureaucrat::incrementGrade() {
 void Bureaucrat::decrementGrade() {
 
   if (this->_grade + 1 > 150) {
-    throw GradeTooLowException();
+    throw Bureaucrat::GradeTooLowException();
   }
   else
   	this->_grade++;
@@ -80,4 +79,4 @@ void Bureaucrat::decrementGrade() {
 // ---------------------------------------------------------- Setters & Getters
 
 std::string const & Bureaucrat::getName() const { return this->_name; }
-int const & Bureaucrat::getGrade() const { return this->_grade; }
+int const & Bureaucrat::getGrade() const { return this->_grade; }   

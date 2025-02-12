@@ -6,11 +6,17 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:57:35 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 14:06:35 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:05:21 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
+
+PresidentialPardonForm::PresidentialPardonForm( void ): AForm("PresidentialPardonForm", 25, 5), _target("Bubu") {
+        
+    std::cout << MAGENTA << "PresidentialPardonForm string constructor called" << RESET << std::endl;
+    return;
+}
 
 PresidentialPardonForm::PresidentialPardonForm( std::string const & target ): 
                         AForm("PresidentialPardonForm", 25, 5), _target(target) {
@@ -32,8 +38,10 @@ PresidentialPardonForm & PresidentialPardonForm::operator=( PresidentialPardonFo
 {
     std::cout << MAGENTA << "PresidentialPardonForm assignment operator called"
                   << RESET << std::endl;
-    (void)other;
-
+    if (this != &other) {
+        AForm::operator=(other);
+        this->_target = other._target;
+    }
 	return (*this);
 }
 

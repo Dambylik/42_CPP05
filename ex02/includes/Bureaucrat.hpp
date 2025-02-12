@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:06:52 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 13:13:20 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:58:09 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,31 @@ class Bureaucrat {
 		
 		Bureaucrat &            operator=( Bureaucrat const & other );
 
-		class GradeTooHighException : public std::exception {
-			public:
-				virtual const char* what() const throw() {
-					return "Bureaucrat exception caught: Grade is too high!\n";
-			}
-		};
-
-		class GradeTooLowException : public std::exception {
-			public:
-				virtual const char* what() const throw() {
-					return "Bureaucrat exception caught: Grade is too low!\n";
-			}
-		};
-
 		void 					incrementGrade();
 		void 					decrementGrade();
 
 		void 					signForm( AForm & form );
-		void 					execForm( AForm & form );
+		void 					executeForm( AForm const & form );
 
 		std::string const &     getName() const;
-		int 					getGrade() const;
+		int const & 			getGrade() const;
+
+// ---------------------------------------------------------- Exceptions
+
+        class GradeTooHighException : public std::exception {
+            public:
+                virtual const char* what() const throw() {
+                return "Exception caught: Grade is too high!\n";
+                }
+        };
+
+        class GradeTooLowException : public std::exception {
+            public:
+                virtual const char* what() const throw() {
+                return "Exception caught: Grade is too low!\n";
+            }
+        };
+// ---------------------------------------------------------- Exceptions
 
 	protected:
 	

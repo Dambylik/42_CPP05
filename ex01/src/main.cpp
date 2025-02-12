@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:10:08 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 16:33:48 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:41:07 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ int main() {
     catch ( const std::exception & e ) {
         std::cerr << e.what() << std::endl;
     }
-
-
     return 0;
 }
 

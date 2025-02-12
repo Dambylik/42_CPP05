@@ -19,7 +19,7 @@ int main() {
         std::cout << form;
 
         b1.signForm(form);
-        b1.execForm(form);
+        b1.executeForm(form);
 
         std::cout << std::endl << "-----------------------------------" << std::endl;
 
@@ -27,7 +27,7 @@ int main() {
         
         std::cout << robot;
         b1.signForm(robot);
-        b1.execForm(robot);
+        b1.executeForm(robot);
 
         std::cout << std::endl << "-----------------------------------" << std::endl;
 
@@ -35,7 +35,7 @@ int main() {
         
         std::cout << mercy;
         b1.signForm(mercy);
-        b1.execForm(mercy);
+        b1.executeForm(mercy);
 
         std::cout << std::endl << "-----------------------------------" << std::endl;
 

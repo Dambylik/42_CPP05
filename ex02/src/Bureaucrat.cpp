@@ -6,12 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:30:54 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 18:07:52 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:03:01 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-
 
 Bureaucrat::Bureaucrat() : _name("Bubu"), _grade(0) {
 
@@ -19,25 +18,17 @@ Bureaucrat::Bureaucrat() : _name("Bubu"), _grade(0) {
     return;
 }
 
-
 Bureaucrat::Bureaucrat( std::string const & name, int grade ) : _name(name) {
 
 	std::cout << GRAY << "Bureaucrat string-int constructor called" << RESET << std::endl;
 
-    if (grade < 1 || grade > 150)
-    {
-        try {
-            if (grade < 1)
-                throw GradeTooHighException();
-            if (grade > 150)
-                throw GradeTooLowException();
-        }
-		catch ( std::exception const & e ) {
-                std::cerr << e.what() << std::endl;
-            }
-        }
-        else
-            this->_grade = grade;
+    if (grade < 1)
+        throw Bureaucrat::GradeTooHighException();
+	
+	else if (grade > 150)
+        throw Bureaucrat::GradeTooLowException();
+	else 
+        this->_grade = grade;
     }
 
 Bureaucrat::Bureaucrat( Bureaucrat const & src ) {
@@ -72,7 +63,7 @@ Bureaucrat::~Bureaucrat() {
 void Bureaucrat::incrementGrade() {
 
   if (this->_grade - 1 < 1) {
-    throw GradeTooHighException();
+    throw Bureaucrat::GradeTooHighException();
   }
 
   this->_grade--;
@@ -81,7 +72,7 @@ void Bureaucrat::incrementGrade() {
 void Bureaucrat::decrementGrade() {
 
   if (this->_grade + 1 > 150) {
-    throw GradeTooLowException();
+    throw Bureaucrat::GradeTooLowException();
   }
 
   this->_grade++;
@@ -100,7 +91,7 @@ void Bureaucrat::signForm( AForm & form ) {
     }
 }
 
-void Bureaucrat::execForm( AForm & form ) {
+void Bureaucrat::executeForm( AForm const & form ) {
 	
 	try {
 		form.execute(*this);
@@ -115,5 +106,5 @@ void Bureaucrat::execForm( AForm & form ) {
 // ---------------------------------------------------------- Setters & Getters
 
 std::string const & Bureaucrat::getName() const { return this->_name; }
-int Bureaucrat::getGrade() const { return this->_grade; }
+int const & Bureaucrat::getGrade() const { return this->_grade; }
 

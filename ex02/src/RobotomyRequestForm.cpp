@@ -6,16 +6,22 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:04:14 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 18:08:46 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:05:11 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
+RobotomyRequestForm::RobotomyRequestForm( void ): AForm("RobotomyRequest", 72, 45), _target("default") {
+	
+    std::cout << BLUE << "Bureaucrat default constructor called" << RESET<< std::endl;
+	return;
+}
+
 RobotomyRequestForm::RobotomyRequestForm( std::string const & target )
 					: AForm("RobotomyRequestForm", 72, 45), _target(target) {
 	
-    std::cout << BLUE << "Bureaucrat default constructor called" << RESET<< std::endl;
+    std::cout << BLUE << "RobotomyRequestForm string constructor called" << RESET<< std::endl;
 	return;
 }
 
@@ -37,9 +43,10 @@ RobotomyRequestForm & RobotomyRequestForm::operator=( RobotomyRequestForm const 
 
     std::cout << BLUE << "RobotomyRequestFormbase assignment operator Called"
 			  << RESET << std::endl;
-
-	(void)other;
-
+	if (this != &other) {
+        AForm::operator=(other);
+        this->_target = other._target;
+    }
 	return (*this);
 }
 

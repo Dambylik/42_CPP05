@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:29:37 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 14:16:24 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:59:54 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ class ShrubberyCreationForm : public AForm {
 	
 	public :
 	
+		ShrubberyCreationForm( void );
 		ShrubberyCreationForm( std::string const & target );
 		ShrubberyCreationForm( ShrubberyCreationForm const & src );
 		
-		~ShrubberyCreationForm();
+		virtual ~ShrubberyCreationForm();
 		
 		
 		ShrubberyCreationForm & 	operator=( ShrubberyCreationForm const & other );
@@ -33,9 +34,7 @@ class ShrubberyCreationForm : public AForm {
 
 	protected:
 
-		ShrubberyCreationForm( void );
-
 	private :
 		
-		std::string const & 		_target;
+		std::string	 				_target;
 };

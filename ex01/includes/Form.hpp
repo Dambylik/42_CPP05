@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:42:45 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/10 17:15:00 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:42:24 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,23 @@ class Form {
 
         void                    beSigned( Bureaucrat const & b );
 
+// ---------------------------------------------------------- Exceptions
+
         class GradeTooHighException : public std::exception {
-            
             public:
-            
                 virtual const char *what() const throw() {
                     return "Form Exception caught. Grade is too high.\n";
             }
         };
 
         class GradeTooLowException : public std::exception {
-            
             public:
-            
                 virtual const char *what() const throw() {
                     return "Form Exception caught. Grade is too low.\n";
             }
         };
-
+// ---------------------------------------------------------- Exceptions
+    
     protected:
     
     private:

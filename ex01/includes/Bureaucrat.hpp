@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:07:01 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 13:25:37 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:29:06 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <string>
 #include <exception>
 #include "Colors.hpp"
-#include "Exceptions.hpp"
 #include "Form.hpp"
 
 class Form;
@@ -38,6 +37,23 @@ class Bureaucrat {
 
 		std::string const &     getName() const;
 		int const &             getGrade() const;
+
+// ---------------------------------------------------------- Exceptions
+
+        class GradeTooHighException : public std::exception {
+            public:
+                virtual const char* what() const throw() {
+                return "Exception caught: Grade is too high!\n";
+                }
+        };
+
+        class GradeTooLowException : public std::exception {
+            public:
+                virtual const char* what() const throw() {
+                return "Exception caught: Grade is too low!\n";
+            }
+        };
+// ---------------------------------------------------------- Exceptions
 
     protected:
 

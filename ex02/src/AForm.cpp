@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:43:03 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/11 18:51:38 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:02:05 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,12 @@ AForm::AForm( void ):_name("Empty form"), _isSigned(false), _signGrade(0), _exec
 AForm::AForm( std::string const & name, int gradeToSign, int gradeToExecute ): 
   _name(name), _isSigned(false), _signGrade(gradeToSign), _executeGrade(gradeToExecute) {
 
-std::cout << ORANGE << "AForm string-int constructor called" << RESET
-              << "\n";
-  
-	if (gradeToExecute < 1 || gradeToExecute > 150 || gradeToSign < 1 || gradeToSign > 150 ) {
-        
-            if (_executeGrade < 1 || _signGrade < 1)
-                throw GradeTooHighException();
-            if (_executeGrade > 150 || _signGrade > 150)
-                throw GradeTooLowException();
-    }
-	return;
+    std::cout << ORANGE << "AForm string-int constructor called" << RESET << "\n";
+      
+    if (_executeGrade < 1 || _signGrade < 1)
+        throw AForm::GradeTooHighException();
+    if (_executeGrade > 150 || _signGrade > 150)
+        throw AForm::GradeTooLowException();
 }
 
 AForm::AForm( AForm const & src ) : _name(src.getName()), _isSigned(false), 
@@ -55,22 +50,17 @@ std::ostream & operator<<( std::ostream & lhs, AForm const & rhs ) {
 	if ((rhs.getExecuteGrade() < 1 || rhs.getExecuteGrade() > 150) ||
       (rhs.getSignGrade() < 1 || rhs.getSignGrade() > 150)) {
 		
-		try {
-			if (rhs.getSignGrade() < 1 || rhs.getExecuteGrade() < 1)
-				throw "AForm exception caught: Grade is too high!\n";
-			if (rhs.getSignGrade() > 150 || rhs.getExecuteGrade() > 150)
-				throw "AForm exception caught: Grade is too low!\n";
-    	}
-		catch (const char *e) {
-    		std::cerr << e << std::endl;
-    	}
-  	} 
+	    if (rhs.getSignGrade() < 1 || rhs.getExecuteGrade() < 1)
+				throw AForm::GradeTooHighException();
+		if (rhs.getSignGrade() > 150 || rhs.getExecuteGrade() > 150)
+				throw AForm::GradeTooLowException();
+    }
 	else {
-    lhs << YELLOW << rhs.getName() << RESET
+        lhs << YELLOW << rhs.getName() << RESET
         << " created, required grade to sign: " << YELLOW << rhs.getSignGrade()
         << RESET << " required grade to execute: " << YELLOW 
         << rhs.getExecuteGrade() << RESET << ".\n\n";     
-  	}
+    }
 	return (lhs);
 }
   
