@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:45:26 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/12 15:55:29 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:15:19 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,70 +14,64 @@
 
 Intern::Intern( void ) {
 
-    std::cout << LBLUE << "Intern default constructor called" << RESET << std::endl;
+    std::cout << GREEN << "Intern default constructor called" << RESET << std::endl;
     return;
 }
 
 Intern::Intern( Intern const & src ) {
 
-    std::cout << LBLUE << "Intern copy constructor called" << RESET << std::endl;
-	(*this) = src;
+    std::cout << GREEN << "Intern copy constructor called" << RESET << std::endl;
+	(void) src;
+	return;
 }
 
 Intern &	Intern::operator=( Intern const & other) {
 
-    std::cout << LBLUE << "Intern assignment operator called" << RESET << std::endl;
+    std::cout << GREEN << "Intern assignment operator called" << RESET << std::endl;
     (void) other;
 	return (*this);
 }
 
 Intern::~Intern() {
 
-    std::cout << LBLUE << "Intern default destructor called" << RESET << std::endl;
+    std::cout << GREEN << "Intern default destructor called" << RESET << std::endl;
 }
 
 // ---------------------------------------------------------- Methods
 
-AForm*	Intern::makeForm( std::string name, std::string target )
-{
-	try {
-		std::string form[] = {
-			"Robotomy",
-			"Presidential Pardon",
-			"Shrubbery Creation"
-		};
+AForm* createRobotomy(const std::string& t) {
+    return new RobotomyRequestForm(t);
+}
 
-		AForm* forms[] = {
-			new RobotomyRequestForm(target),
-			new PresidentialPardonForm(target),
-			new ShrubberyCreationForm(target)
-		};
+AForm* createPresidentialPardon(const std::string& t) {
+    return new PresidentialPardonForm(t);
+}
 
-		for (int i = 0; i < 3; i++) {
-			if (name == form[i]) {
-				std::cout << LBLUE << "Intern" << RESET << " creates " << name << std::endl;
-				for (int i = 0; i < 3; i++) {
-					if (name != form[i]) {
-		                std::cout << LBLUE << "Intern" << RESET << " couldn't create " << name << std::endl;
-						AForm* badForm = forms[i];
-						delete badForm;
-					}
-				}
-				return (forms[i]);
-			}
-		}
+AForm* createShrubberyCreation(const std::string& t) {
+    return new ShrubberyCreationForm(t);
+}
 
-		std::cout << "Intern couldn't create " << name << std::endl;
-		for (int i = 0; i < 3; i++) {
-			AForm* badForm = forms[i];
-			delete badForm;
-		}
-		return (NULL);
+AForm* Intern::makeForm(std::string formName, std::string target) {
+    
+	std::string formTypes[3] = {
+        "robotomy request",
+        "presidential pardon",
+        "shrubbery creation"
+    };
 
-	}
-    catch( std::bad_alloc const & e) {
-		std::cerr << e.what() << '\n';
-		return (NULL);
-	}
-	return (NULL);
+    AForm* (*formCreators[3])(const std::string&) = {
+        createRobotomy,
+        createPresidentialPardon,
+        createShrubberyCreation
+    };
+
+    for (int i = 0; i < 3; i++) {
+        if (formName == formTypes[i]) {
+			AForm* form = formCreators[i](target); 
+            std::cout << "Intern creates " << formName << std::endl;
+            return form;
+        }
+    }
+    std::cout << RED << "Error: Intern couldn't create form '" << formName << "'" << RESET << std::endl;
+    return NULL;
 }

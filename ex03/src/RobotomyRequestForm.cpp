@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:04:14 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/12 14:05:11 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:07:48 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm const & src )
 
 RobotomyRequestForm::~RobotomyRequestForm() {
 
-	std::cout << BLUE << "RobotomyRequestFormbase destructor called"
+	std::cout << BLUE << "RobotomyRequestForm default destructor called"
 				  << RESET << std::endl;
 }
 
 
 RobotomyRequestForm & RobotomyRequestForm::operator=( RobotomyRequestForm const & other) {
 
-    std::cout << BLUE << "RobotomyRequestFormbase assignment operator Called"
+    std::cout << BLUE << "RobotomyRequestFormbase assignment operator called"
 			  << RESET << std::endl;
 	if (this != &other) {
         AForm::operator=(other);
