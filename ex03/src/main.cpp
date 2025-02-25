@@ -10,6 +10,8 @@
 
 int main() {
 
+    srand(time(NULL));
+
     std::cout << std::endl << "--------------Robotomy Form---------------------" << std::endl;
 
     Intern Donald;
@@ -22,37 +24,28 @@ int main() {
 
     std::cout << std::endl << "----------------Shrubbery Form------------------" << std::endl;
 
-        AForm* robot = i.makeForm("Robotomy", "Emmanuel");
-        if (!robot)
-		{
-			std::cout << "Error! Creating form failed" << std::endl;
-			delete form;
-			return (1);
-		}
-        
-        std::cout << *robot;
-        b1.signForm(*robot);
-        b1.executeForm(*robot);
+    AForm* form2 = Donald.makeForm("shrubbery", "Home");
+    if (form2) {
+        std::cout << *form2;
+        delete form2;
+    }
 
-        std::cout << std::endl << "-----------------------------------" << std::endl;
+    std::cout << std::endl << "------------Presidential Pardon Form--------------" << std::endl;
 
-        AForm* mercy = i.makeForm("Presidential Pardon", "Olaf");
-		if (!mercy)
-		{
-			std::cout << "Error creating form, abort" << std::endl;
-			delete form;
-			delete robot;
-			return (1);
-		}
-      
-        std::cout << mercy;
-        b1.signForm(*mercy);
-        b1.executeForm(*mercy);
-        delete form;
-		delete robot;
-		delete mercy;
+    AForm* form3 = Donald.makeForm("presidential pardon", "Emmanuel");
+    if (form3) {
+        std::cout << *form3;
+        delete form3;
+    }
 
-        std::cout << std::endl << "-----------------------------------" << std::endl;
+std::cout << std::endl << "------------Invalid Form--------------" << std::endl;
+
+    AForm* form4 = Donald.makeForm("Boubou", "Lambda");
+    if (form4) {
+        delete form4;
+    }
+
+std::cout << std::endl << "------------Subject example--------------" << std::endl;
 
     {
         Intern someRandomIntern;
