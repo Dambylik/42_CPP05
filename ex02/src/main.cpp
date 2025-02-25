@@ -24,12 +24,12 @@ int main() {
 
         std::cout << std::endl << "-----------------------------------" << std::endl;
 
-        RobotomyRequestForm robot("Emmanuel");
+        RobotomyRequestForm robot("ex");
         
         std::cout << robot;
         b1.signForm(robot);
         b1.executeForm(robot);
-        for (int i = 0; i < 20; ++i)
+        for (int i = 0; i < 10; ++i)
             b1.executeForm(robot);
 
         std::cout << std::endl << "-----------------------------------" << std::endl;
